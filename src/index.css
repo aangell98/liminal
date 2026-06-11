@@ -203,3 +203,63 @@ canvas {
   opacity: 0.4;
   font-size: 0.75rem;
 }
+
+/* ---------------- Touch controls (mobile) ---------------- */
+
+.touch {
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Full-screen look layer sits underneath the joystick/buttons, so a drag
+   anywhere not on a control rotates the view. */
+.touch-look {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+
+.touch-joy {
+  position: absolute;
+  left: 28px;
+  bottom: 32px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid rgba(243, 236, 201, 0.25);
+  background: rgba(10, 9, 4, 0.25);
+  display: grid;
+  place-items: center;
+  touch-action: none;
+}
+
+.touch-joy-knob {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(217, 198, 106, 0.55);
+  border: 2px solid rgba(243, 236, 201, 0.5);
+  pointer-events: none;
+}
+
+.touch-btn {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid rgba(243, 236, 201, 0.35);
+  background: rgba(10, 9, 4, 0.35);
+  color: #f3ecc9;
+  font-family: ui-monospace, "Courier New", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  touch-action: none;
+}
+
+.touch-run { right: 32px; bottom: 120px; }
+.touch-creep { right: 140px; bottom: 44px; }
+.touch-btn:active { background: rgba(217, 198, 106, 0.4); }

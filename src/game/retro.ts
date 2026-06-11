@@ -52,6 +52,12 @@ export const playerState = { x: 0, z: 0, moving: false, sprint: false, creep: fa
 // new coords) teleports the player on the next frame (the found-footage "cut").
 export const playerControl = { frozen: false, respawnSeq: 0, x: 0, z: 0 }
 
+// Touch input channel (mobile). The on-screen controls write here and the Player
+// rig reads it each frame. `mvX/mvY` are the analog joystick axes (mvY +1 = forward,
+// mvX +1 = strafe right); `lookDX/lookDY` are accumulated look-drag deltas in pixels
+// (consumed and zeroed each frame); `sprint/creep` are the held movement-mode buttons.
+export const touchInput = { active: false, mvX: 0, mvY: 0, lookDX: 0, lookDY: 0, sprint: false, creep: false }
+
 // Live entity state, written by the Entity and read by the HUD/audio for proximity
 // cues. `mode` is its current FSM state; `dist` is metres to the player.
 export const entityState = {

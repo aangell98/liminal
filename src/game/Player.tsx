@@ -4,7 +4,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import type { World } from './maze'
 import type { Hum } from './audio'
-import { cameraMotion, cameraFx, hudState, lightFx, worldFx, playerState, playerControl, deathCam, DEATH_FALL, gameState, huntFx } from './retro'
+import { cameraMotion, cameraFx, hudState, lightFx, worldFx, playerState, playerControl, deathCam, DEATH_FALL, gameState, huntFx, touchInput } from './retro'
 
 const EYE = 1.6
 const SENS = 0.0022
@@ -190,6 +190,18 @@ export function Player({
     }
     lastDeathPhase.current = 'none'
 
+    // Touch look: fold the accumulated drag deltas into yaw/pitch, then clear them.
+    // Done before the movement basis is computed so walking tracks the new heading.
+    if (touchInput.active && !playerControl.frozen) {
+      yaw.current -= touchInput.lookDX * SENS
+      pitch.current -= touchInput.lookDY * SENS
+      pitch.current = Math.max(-1.5, Math.min(1.5, pitch.current))
+      touchInput.lookDX = 0
+      touchInput.lookDY = 0
+      keys.current.sprint = touchInput.sprint
+      keys.current.creep = touchInput.creep
+    }
+
     const sinY = Math.sin(yaw.current)
     const cosY = Math.cos(yaw.current)
 
@@ -200,6 +212,11 @@ export function Player({
     if (k.b) { mx += sinY; mz += cosY }
     if (k.r) { mx += cosY; mz += -sinY }
     if (k.l) { mx += -cosY; mz += sinY }
+    // Touch joystick: analog forward/strafe folded into the same movement basis.
+    if (touchInput.active && (touchInput.mvX !== 0 || touchInput.mvY !== 0)) {
+      mx += -sinY * touchInput.mvY + cosY * touchInput.mvX
+      mz += -cosY * touchInput.mvY - sinY * touchInput.mvX
+    }
     // During the signal-loss sequence the player is frozen (no input).
     const frozen = playerControl.frozen
     const moving = !frozen && (mx !== 0 || mz !== 0)

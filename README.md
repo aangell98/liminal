@@ -1,8 +1,8 @@
 # LIMINAL
 
-> Nivel 0 — *"El zumbido"*
+> Nivel 0: *"El zumbido"*
 
-**Liminal** es un juego de terror en primera persona inspirado en los **Backrooms**: un edificio de oficinas infinito, reimaginado mil veces hasta perder todo sentido, bañado en una luz fluorescente amarilla enferma y el zumbido eterno de los tubos. Eres un intruso en un lugar que no debería existir... y algo ya sabe que estás aquí.
+**Liminal** es un juego de terror en primera persona inspirado en los **Backrooms**: un edificio de oficinas infinito, reimaginado mil veces hasta perder todo sentido, bañado en una luz fluorescente amarilla enferma y el zumbido eterno de los fluorescentes. Eres un intruso en un lugar que no debería existir... y algo ya sabe que estás aquí.
 
 🎮 **Juega ahora:** **[aangell98.github.io/liminal](https://aangell98.github.io/liminal/)**
 
@@ -16,7 +16,7 @@
 
 - **Estética found-footage.** Cámara retro con marco de grabación, indicador `REC`, fecha/hora, grano, distorsión de lente ojo de pez y aberración cromática. Pareces estar viendo una cinta encontrada.
 - **Backrooms fieles al lore.** Pasillos sin sentido, estancias que no conectan, paredes amarillas brillantes, moqueta húmeda y oscura, columnas y geometría imposible. Claustrofóbico a propósito.
-- **La Entidad.** No hay salida. Solo *ella*. Una IA directora omnisciente que te acecha, te escucha, te flanquea y, tarde o temprano, te caza — el 100 % de las veces.
+- **La Entidad.** No hay salida. Solo *ella*. Una IA directora omnisciente que te acecha, te escucha, te flanquea y, tarde o temprano, te caza: el 100 % de las veces.
 - **Anomalías.** El mundo glitchea: apagones, pasos imposibles que giran a tu alrededor, susurros, temblores lejanos.
 - **Audio procedimental.** Todo el sonido (zumbido eléctrico, pisadas, respiración, risas distorsionadas) se genera en tiempo real con la Web Audio API. Sin samples.
 
@@ -29,7 +29,7 @@ Diseñada bajo una única premisa: **el jugador es un intruso y la Entidad es la
 - Curiosa al principio: acecha desde la distancia, asoma y se retira.
 - Te **oye**: correr te delata, el sigilo (`C`) apenas hace ruido. Caminar es un término medio.
 - Te **persigue** con pathfinding A\*, predice tu trayectoria y te corta el paso.
-- Su sola presencia **mata la luz**: los fluorescentes a su alrededor parpadean violentamente y chisporrotean — un aviso diegético de por dónde viene.
+- Su sola presencia **mata la luz**: los fluorescentes a su alrededor parpadean violentamente y chisporrotean, un aviso diegético de por dónde viene.
 - El *dread* solo sube: cuanto más sobrevives, más implacable se vuelve.
 
 No vas a escapar. Solo puedes retrasar lo inevitable.
