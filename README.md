@@ -56,6 +56,8 @@ Su sola cercanía **corrompe la realidad** antes de que la veas: la señal de la
 
 > **Premisa de diseño:** eres un intruso, la Entidad es la dueña del mundo. No vas a escapar; el sigilo y las anomalías solo **retrasan** lo inevitable.
 
+![La Entidad te alcanza: la cámara la encuadra antes de caer](docs/entity-close.png)
+
 ![La señal se corrompe cuando se acerca](docs/entity.png)
 
 ## La experiencia
