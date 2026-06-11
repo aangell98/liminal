@@ -30,6 +30,23 @@ export function createHum() {
       (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext
     ctx = new Ctx()
 
+    // iOS/Safari (and some mobile browsers) create the context in a 'suspended'
+    // state even from a user gesture. Resume it now, and keep a safety net that
+    // retries on the next touch/click in case the very first gesture didn't take.
+    const resume = () => {
+      ctx?.resume().catch(() => {})
+    }
+    resume()
+    const retry = () => {
+      if (ctx && ctx.state !== 'running') resume()
+      else {
+        window.removeEventListener('touchend', retry)
+        window.removeEventListener('pointerup', retry)
+      }
+    }
+    window.addEventListener('touchend', retry)
+    window.addEventListener('pointerup', retry)
+
     master = ctx.createGain()
     master.gain.value = 0.0001
     master.connect(ctx.destination)
