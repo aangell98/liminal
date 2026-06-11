@@ -1,12 +1,30 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { touchInput } from '../game/retro'
 
 // On-screen controls for touch devices: a left analog joystick for movement, a
-// right-side drag area for looking, and hold buttons for run/stealth. Everything
-// writes into the shared `touchInput` channel that the Player rig reads each frame.
+// right-side drag area for looking, and toggle buttons for run/stealth. Toggles
+// (not hold) so you can keep your thumb free to look while running. Run and
+// stealth are mutually exclusive. Everything writes into the shared `touchInput`
+// channel that the Player rig reads each frame.
 const JOY_R = 55 // px radius of the joystick travel
 
 export function TouchControls() {
+  const [sprint, setSprint] = useState(false)
+  const [creep, setCreep] = useState(false)
+
+  const toggleSprint = () => {
+    const next = !sprint
+    setSprint(next)
+    touchInput.sprint = next
+    if (next && creep) { setCreep(false); touchInput.creep = false }
+  }
+  const toggleCreep = () => {
+    const next = !creep
+    setCreep(next)
+    touchInput.creep = next
+    if (next && sprint) { setSprint(false); touchInput.sprint = false }
+  }
+
   const joyId = useRef<number | null>(null)
   const joyOrigin = useRef({ x: 0, y: 0 })
   const knob = useRef<HTMLDivElement>(null)
@@ -71,18 +89,14 @@ export function TouchControls() {
         <div className="touch-joy-knob" ref={knob} />
       </div>
       <button
-        className="touch-btn touch-run"
-        onPointerDown={() => { touchInput.sprint = true }}
-        onPointerUp={() => { touchInput.sprint = false }}
-        onPointerCancel={() => { touchInput.sprint = false }}
+        className={`touch-btn touch-run${sprint ? ' on' : ''}`}
+        onPointerDown={(e) => { e.preventDefault(); toggleSprint() }}
       >
         CORRER
       </button>
       <button
-        className="touch-btn touch-creep"
-        onPointerDown={() => { touchInput.creep = true }}
-        onPointerUp={() => { touchInput.creep = false }}
-        onPointerCancel={() => { touchInput.creep = false }}
+        className={`touch-btn touch-creep${creep ? ' on' : ''}`}
+        onPointerDown={(e) => { e.preventDefault(); toggleCreep() }}
       >
         SIGILO
       </button>
